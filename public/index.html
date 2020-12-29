@@ -6,23 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
     <div class="chat">
+        
         <div class="centered-form">
             <div class="centered-form__box">
-                <h1>Join</h1>
-                <form action="/chat.html">
-                    <label>Display name: </label>
-                    <input type="text" name="username" placeholder="Enter your name here!" required />
+                <div class="chat__header">
+                    <h1 class="chat__header-title">
+                        <i class="fa fa-comments chat__header-logo" ></i>
+                        Chat App
+                    </h1>
+                </div>
 
-                    <label>Chat room: </label>
-                    <input type="text" name="room" placeholder="Room" required />
-
-                    <button class="join">Join</button>
-                </form>
+                <div class="centered-form__content">
+                    <h1>Join</h1>
+                    <form action="/chat.html">
+                        <label>Display name: </label>
+                        <input type="text" name="username" placeholder="Enter your name here!" required />
+                    
+                        <label>Chat room: </label>
+                        <input type="text" name="room" placeholder="Room" required />
+                    
+                        <button class="join">Join</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -1,20 +1,19 @@
-const moment = require('moment');
+const moment = require("moment");
 
+const generateMessage = (text, username = "Admin") => ({
+  text,
+  username,
+  createdAt: moment().valueOf(),
+});
 
-const generateMessage = (text, username = 'Admin') => ({
-    text,
-    username,
-    createdAt: moment().valueOf()
-})
-
-const generateLocationMessage = (url, username = 'Admin') => ({
-    url,
-    username,
-    createdAt: moment().valueOf()
-})
-
+const generateLocationMessage = (url, username = "Admin", location) => ({
+  location,
+  url,
+  username,
+  createdAt: moment().valueOf(),
+});
 
 module.exports = {
-    generateMessage,
-    generateLocationMessage
-}
+  generateMessage,
+  generateLocationMessage,
+};

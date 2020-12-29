@@ -2,63 +2,94 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo5-EihXfLWryOFkZnk0r5tsMSgkf5rxo" async defer></script>
 </head>
 
 <body>
 
     <div class="chat">
-        <div id="sidebar" class="chat__sidebar"></div>
+
+        <div id="sidebar-container" class="sidebar" >
+            <div id="sidebar" class="chat__sidebar"></div>
+            
+            <button id="sidebar-button" class="sidebar__button">
+                <div id="users-icon" class="sidebar__users-icon sidebar__users-icon--hidden">
+                    <i class="fa fa-users" style="font-size:22px;"></i>
+                </div>
+            
+                <div>
+                    <i id="arrow-icon" class="fa fa-angle-left sidebar__arrow-icon" style="font-size:26px;"></i>
+                </div>
+            </button>           
+        </div>
+
 
         <div class="chat__main">
             <div class="chat__header">
-                <h1 class="chat__header-title">Chat App</h1>
+                    <h1 class="chat__header-title">
+                        <i class="fa fa-comments chat__header-logo"></i>
+                        Chat App
+                    </h1>
             </div>
             <div class="chat__messages" id="messages"></div>
+            
             <div class="compose">
-                <form>
-                    <input type="text" placeholder="Type your message here!" required autocomplete="off" />
-                    <button id="send">Send</button>
+                <form class="compose__form">
+                    <input class="compose__input" type="text" placeholder="Type your message here!" required autocomplete="off" />
+                    <div class="compose__buttons-container">
+                        <button type="submit" class="compose__button compose__button--send" id="send">Send</button>
+                        <button type="button" class="compose__button" id="location">Send location</button>
+                    </div>
                 </form>
-                <button id="location">Send location</button>
             </div>
         </div>
     </div>
 
     <script id="message-template" type="text/html">
-        <div class="message">
+        <div class="message {{messageModClass}}">
             <p>
                 <span class="message__name">{{username}}</span>
                 <span class="message__meta" >{{createdAt}}</p>
             </p>
-            <p class="message__text">{{text}}</p>
+            <p class="message__text {{messageTextModClass}}">{{text}}</p>
         </div>
     </script>
 
     <script id="location-template" type="text/html">
-            <div class="message"> 
+            <div class="message {{messageModClass}}"> 
                 <p>
                     <span class="message__name">{{username}}</span>
                     <span class="message__meta" >{{createdAt}}</p>
                 </p>
-                <a href="{{url}}" target="_blank">My current location</a>
             </div>
     </script>
 
     <script id="room-users-template" type="text/html">
-        <h2 class="room-title">{{room}}</h2>
-        <h2 class="list-title">Users:<h2>
+        <div class="room">
+            <div class="room__title-container"> 
+                <h2 id="room-title" class="room__title">{{room}}</h2>
+            </div>
 
-        <ul class="users-list">
-            {{#users}}
-            <li class="user">
-                - {{username}}
-            </li>
-            {{/users}}
-        </ul>
+            <div class="room__list">
+                <h2 class="room__list-title">Users:<h2>
+    
+                <ul class="room__list-users">
+                    {{#users}}
+                    <li class="room__user">         
+                         {{username}}
+                    </li>
+                    {{/users}}
+                </ul>
+            </div>
+        </div>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
